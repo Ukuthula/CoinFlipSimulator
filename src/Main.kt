@@ -1,3 +1,5 @@
+import javafx.application.Application.launch
+
 /**
  * Created by Julian on 13.06.2017.
  */
@@ -11,5 +13,8 @@ fun main(args: Array<String>){
         println("$test"+ coin.getHeadCout() + coin.getNumberCout());
         x++
     }while (x < 20)
+
+    //Starts the application UI
+    launch(GUI::class.java)
 }
 

@@ -8,6 +8,7 @@ open class FlipEngine() {
     var headCount = 0
     var numberCount = 0
     val random = Random()
+    val first = random.nextInt(2)
 
     fun spinCoin(): Int {
         var result = random.nextInt(2)
