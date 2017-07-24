@@ -9,6 +9,7 @@ import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.HBox
 import javafx.scene.layout.StackPane
+import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import javafx.stage.Stage
 
@@ -19,9 +20,11 @@ open class GUI: Application(){
 
         val btn: Button = Button("Flip Coin")
         val txt: Label = Label()
-        btn.setOnAction { event: ActionEvent? ->
+        val animation: Animation = Animation()
+        btn.setOnAction { e: ActionEvent? ->
             run {
                 var spin = coin.spinCoin()
+                animation.start(spin)
                 if ( spin == 0){
                     txt.text = "Head"
                 }
@@ -32,12 +35,17 @@ open class GUI: Application(){
         }
 
         val centerLayout: StackPane = StackPane()
-        val rowLayout: HBox = HBox()
+        val rowLayout: VBox = VBox()
         rowLayout.children.add(btn)
         rowLayout.children.add(txt)
-        centerLayout.children.add(rowLayout)
+        val vSplit: HBox = HBox()
+        vSplit.children.add(animation)
+        vSplit.children.add(rowLayout)
+        centerLayout.children.add(vSplit)
 
-        val scene: Scene = Scene(centerLayout, 400.0, 400.0, Color.ORANGE)
+
+        //val scene: Scene = Scene(centerLayout, 400.0, 400.0, Color.ORANGE)
+        val scene: Scene = Scene(centerLayout, 400.0, 400.0)
 
         primaryStage?.scene = scene
         primaryStage?.title = "Coin Flip Simulator"
